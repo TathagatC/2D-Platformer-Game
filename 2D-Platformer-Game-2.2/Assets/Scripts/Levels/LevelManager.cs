@@ -33,6 +33,7 @@ public class LevelManager : MonoBehaviour
     {
         if(GetLevelStatus(Levels[0]) == LevelStatus.Locked)
         {
+            SoundManager.Instance.Play(Sounds.Background);
             SetLevelStatus(Levels[0], LevelStatus.Unlocked);
         }
     }

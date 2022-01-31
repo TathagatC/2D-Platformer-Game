@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
   public void PlayerDamaged (float enemyDamage) 
   {
     health.UpdateHealth(-enemyDamage);
+    SoundManager.Instance.Play(Sounds.HurtSound);
     if(PlayerHealth.gameOver)
     {
       // animator.SetTrigger("Death");
@@ -69,12 +70,15 @@ public class PlayerController : MonoBehaviour
     {
       //death animation
       animator.SetTrigger("Death");
+      SoundManager.Instance.Play(Sounds.PlayerDeath);
 
       //disable script
       this.enabled = false;
     }
     float speed = Input.GetAxisRaw("Horizontal");
+    //SoundManager.Instance.Play(Sounds.PlayerMove);
     animator.SetFloat("Speed", Mathf.Abs(speed));
+
     if(isCrouching == true)
     {
       speed = 0;
@@ -94,6 +98,7 @@ public class PlayerController : MonoBehaviour
     // Jump
     if(Input.GetKeyDown(KeyCode.W) && isGrounded)
     {
+      SoundManager.Instance.Play(Sounds.PlayerJump);
       animator.SetTrigger("Jump");
       rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
     }

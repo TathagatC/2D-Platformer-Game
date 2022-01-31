@@ -14,7 +14,7 @@ public class GameOverController : MonoBehaviour
     private void Awake()
     {
         restartButton.onClick.AddListener(ReloadLevel);
-        mainMenuButton.onClick.AddListener(MainScene);    
+        mainMenuButton.onClick.AddListener(MainScene);
     }
 
     public void PlayerDied()
@@ -24,6 +24,7 @@ public class GameOverController : MonoBehaviour
 
     private void ReloadLevel ()
     {
+        SoundManager.Instance.Play(Sounds.BackButtonClick);
         Debug.Log("Reloading Scene ........");
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.buildIndex);
@@ -31,6 +32,7 @@ public class GameOverController : MonoBehaviour
 
     private void MainScene()
     {
+        SoundManager.Instance.Play(Sounds.BackButtonClick);
         SceneManager.LoadScene(0);
     }
 }
